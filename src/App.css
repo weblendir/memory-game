@@ -29,6 +29,7 @@
 }
 .flipped {
 	transform: scaleX(-1);
+	
 }
 .button {
 	background-color: red;
