@@ -28,6 +28,10 @@ function shuffle(a) {
 }
 const numofCars = 6;
 let cars = dizin(numofCars);
+const buttonSound = new Audio("sounds/button.mp3");
+const laughSound = new Audio("sounds/laugh.mp3");
+const yeahSound = new Audio("sounds/yeah.mp3");
+const successSound = new Audio("sounds/success.mp3");
 
 function FlipApp() {
 	const [show, setShow] = useState([...new Array(cars.length)].map(() => false));
@@ -48,8 +52,7 @@ function FlipApp() {
 		setCount(count + 1);
 		console.log(count + "deger");
 		console.log(i);
-		const successsound = new Audio("sounds/button.mp3");
-		successsound.play();
+		buttonSound.play();
 	}
 
 	useEffect(() => {
@@ -60,8 +63,7 @@ function FlipApp() {
 
 		if (count === 2) {
 			if (selList[0] !== selList[1]) {
-				const successsound = new Audio("sounds/laugh.mp3");
-				successsound.play();
+				laughSound.play();
 				console.log("different pictures");
 
 				console.log(selIdList[0] + " " + selIdList[1]);
@@ -73,11 +75,9 @@ function FlipApp() {
 				}, 1000);
 			} else {
 				if (show.includes(false)) {
-					const successsound = new Audio("sounds/yeah.mp3");
-					successsound.play();
+					yeahSound.play();
 				} else {
-					const successsound = new Audio("sounds/success.mp3");
-					successsound.play();
+					successSound.play();
 				}
 				setCount(0);
 			}

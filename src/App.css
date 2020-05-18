@@ -4,7 +4,7 @@
 
 .showPict {
 	/* transform: rotateY(180deg); */
-	transition-delay: 0.2s;
+	transition-delay: 0.15s;
 	opacity: 1;
 }
 
@@ -29,7 +29,7 @@
 }
 .flipped {
 	transform: scaleX(-1);
-	
+
 }
 .button {
 	background-color: red;
