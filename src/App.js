@@ -3,15 +3,10 @@ import "./App.css";
 
 function dizin(numofCards) {
 	const arabalar = [];
-	let say = 0;
 
 	for (let index = 0; index < numofCards; index++) {
-		// arabalar[index] = `cars/${index}.png`;
 		arabalar.push(`cars/${index}.png`);
-		say += 1;
 		arabalar.push(`cars/${index}.png`);
-		say += 1;
-		// arabalar[index] = "\"<img src='cars/'" + index + ".png' alt='Arabalar" + index + "' />\"";
 	}
 	shuffle(arabalar);
 	return arabalar;
@@ -26,18 +21,18 @@ function shuffle(a) {
 	}
 	return a;
 }
-const numofCars = 6;
-let cars = dizin(numofCars);
+
 const buttonSound = new Audio("sounds/button.mp3");
 const laughSound = new Audio("sounds/laugh.mp3");
 const yeahSound = new Audio("sounds/yeah.mp3");
 const successSound = new Audio("sounds/success.mp3");
 
-function FlipApp() {
+function FlipApp({ cars, setGameReady }) {
 	const [show, setShow] = useState([...new Array(cars.length)].map(() => false));
 	const [selected, setSelected] = useState(["", ""]);
 	const [selectedID, setSelectedID] = useState([0, 1]);
 	const [count, setCount] = useState(0);
+
 	function toggleShow(id, i) {
 		const newList = [...show];
 		const selList = [...selected];
@@ -78,6 +73,7 @@ function FlipApp() {
 					yeahSound.play();
 				} else {
 					successSound.play();
+					newGame();
 				}
 				setCount(0);
 			}
@@ -92,6 +88,7 @@ function FlipApp() {
 		let newCars = shuffle(cars); // reset cars positions
 		cars = newCars;
 		setCount(0); // reset counter
+		setGameReady();
 	}
 	return (
 		<div className="App">
@@ -105,7 +102,7 @@ function FlipApp() {
 						<img src={i} alt="Arabalar" className={`pict ${show[ind] ? "showPict" : "noPict"}`} />
 					</div>
 				))}
-				<button className="button" onClick={newGame}>
+				<button className="buttonRestart" onClick={newGame}>
 					New Game
 				</button>
 			</div>
@@ -114,7 +111,42 @@ function FlipApp() {
 }
 
 function App() {
-	return <FlipApp />;
+	const [numofCars, setNumofCars] = useState(6);
+	const [ncars, setNcars] = useState([]);
+	const [gameready, setGameready] = useState(0);
+
+	function handleChange(event) {
+		setNumofCars(Number(event.target.value));
+	}
+	function prepareGame() {
+		setNcars(dizin(numofCars));
+		setGameready(1);
+	}
+
+	return (
+		<div>
+			<div className={`input ${gameready === 0 ? "" : "noInput"}`}>
+				{/* <button onClick={() => prepareGame()}>New Game</button> */}
+				<label>
+					Number of Cards :
+					<input
+						className="inputText"
+						type="number"
+						id="myNumber"
+						value={numofCars}
+						name="numofCars"
+						onChange={handleChange}
+						min="1"
+						max="16"
+					/>
+				</label>
+				<button className="button" onClick={() => prepareGame()}>
+					New Game
+				</button>
+			</div>
+			{gameready ? <FlipApp cars={ncars} setGameReady={() => setGameready(0)} /> : null}
+		</div>
+	);
 }
 
 export default App;

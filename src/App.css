@@ -1,4 +1,53 @@
+.input {
+	position: relative;
+	margin-top: 30vh;
+	width: 30%;
+	margin-left: 35%;
+
+	background-color: gray;
+	color: white;
+	padding: 20px 32px;
+	text-align: center;
+
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.inputText {
+	font-size: 24px;
+	margin-left: 10px;
+	width: 60px;
+	font-weight: bold;
+}
+.noInput {
+	display: none;
+}
+.button {
+	margin-top: 80px;
+	background-color: blue;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.buttonRestart {
+	position: absolute;
+	background-color: blue;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+	cursor: pointer;
+}
 .pict {
+	margin-top: 15%;
 	width: 150px;
 }
 
@@ -14,13 +63,14 @@
 	/* display: none; */
 }
 .blocks {
+	position: static;
 	height: 150px;
 	width: 150px;
 	background-color: rgb(230, 87, 21);
 	float: left;
 	margin: 5px 5px 5px 5px;
 	cursor: pointer;
-	display: flex;
+	/* display: flex; */
 	justify-content: center;
 	align-items: center;
 	border-radius: 10px;
@@ -29,62 +79,12 @@
 }
 .flipped {
 	transform: scaleX(-1);
-
-}
-.button {
-	background-color: red;
-	border: none;
-	color: white;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: 15px;
-	cursor: pointer;
-	position: absolute;
-	left: 0;
-	top: 0;
 }
 .cards {
 	padding-left: 25%;
 	padding-right: 25%;
 }
 .App {
+	width: 100%;
 	text-align: center;
-}
-
-.App-logo {
-	height: 40vmin;
-	pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-	.App-logo {
-		animation: App-logo-spin infinite 20s linear;
-	}
-}
-
-.App-header {
-	background-color: #282c34;
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: white;
-}
-
-.App-link {
-	color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
 }
